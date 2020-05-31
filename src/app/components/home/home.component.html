@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="title">
+        <h3>Colaboradores</h3>
+    </div>
+    <div class="table-container">
+        <div class="filter-container">
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+            </mat-form-field>
+        </div>
+        <table mat-table [dataSource]="collaborators">
+            <ng-container matColumnDef="picture">
+                <th mat-header-cell *matHeaderCellDef>Foto</th>
+                <td mat-cell class="pic-td" *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">
+                    <img src={{element.picture.thumbnail}} alt="">
+                </td>
+            </ng-container>
+            
+                <!-- Weight Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">{{element.name.first}} {{element.name.last}} </td>
+            </ng-container>
+            
+                <!-- Symbol Column -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Correo electrónico:</th>
+                <td mat-cell *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">{{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef>Username</th>
+                <td mat-cell *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">{{element.login.username}} </td>
+            </ng-container>            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
