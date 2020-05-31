@@ -1,3 +1,10 @@
+::ng-deep.mat-form-field-underline {
+    background-color: #572364 !important;
+} 
+::ng-deep .mat-focused, .mat-form.field, .mat-input-element {
+    color: #572364 !important;
+   }
+    
 .login-card-container{
     margin: 5%;
     display: flex;
@@ -13,6 +20,28 @@
             align-items: center;
             cursor: pointer;
             background-color: #93c7d6;
+            &.login{
+                height: auto; 
+                form{
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    mat-form-field{
+                        background: transparent;
+                        mat-label{
+                            font-family: "Domine", serif;
+                            font-size: 20px;
+                            color: #572364;
+
+                        }               
+
+                    }
+                    mat-button{
+                        background: #c2185b;
+                        color: #ffffff;
+                    }
+                }
+            }
             .logo-google{
                 width: 40px;
                 display: flex;

@@ -21,13 +21,25 @@ export class AuthService {
     return this.isLoggedObservable.asObservable();
   }
 
-  setTestingMode(test: boolean) {
+  setIsLogged(test: boolean) {
     this.isLogged = test;
     this.isLoggedObservable.next(this.isLogged);
   }
 
   googleAuth() {
     return this.authLogin(new auth.GoogleAuthProvider());
+  }
+
+  createAccountWithEmailAndPassword(email: string, password: string) {
+    this.afAuth.createUserWithEmailAndPassword(email, password).then( result => {
+      console.log(result)
+    })
+  }
+
+  signInWithMailAndPassword(email: string, password: string) {
+    return this.afAuth.signInWithEmailAndPassword(email, password).then( result => {
+      console.log(result)
+    })
   }
 
   authLogin(provider) {
@@ -39,17 +51,31 @@ export class AuthService {
          result.user.uid) : data.forEach(user => user.payload.doc.data())
       });
       if(!this.isLogged) {
-        this.setTestingMode(true);
+        this.setIsLogged(true);
+        
         localStorage.setItem('user', JSON.stringify({user: {
           name: result.user.displayName,
           email: result.user.email,
           phone: result.user.phoneNumber,
           picture: result.user.photoURL
         }}))
+        let user = JSON.parse(localStorage.getItem('user')).user;
+        this.userService.setCurrentUser(user);
         this.router.navigate(['home'])
       }
     }).catch(error => {
       console.log(error);
     })
   }
+
+  signOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.setIsLogged(false);
+      this.userService.getUser(null);
+      this.router.navigate(['login']);
+    })
+  }
+
+
 }

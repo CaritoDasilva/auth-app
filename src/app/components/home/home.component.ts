@@ -3,7 +3,8 @@ import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
+import * as moment from 'moment';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,10 +15,9 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   collaborators: MatTableDataSource<any>;
   displayedColumns: string[];
-  constructor( private usersService: UsersService, private router: Router) { 
+  constructor( private usersService: UsersService, private router: Router, private authService: AuthService) { 
     this.collaborators;
     this.displayedColumns = ['picture', 'name', 'email', 'username'];
-
   }
 
   ngOnInit(): void {
@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     this.usersService.getRandomUsers().subscribe((data: any) => {
       console.log(data)
       this.collaborators = new MatTableDataSource<any>(data.results);
+      this.collaborators.filteredData.map( colab => moment(`${colab.registered.date}`).format('DD-MM-YYYY'))
       this.collaborators.paginator = this.paginator;
     })    
   }
@@ -38,8 +39,9 @@ export class HomeComponent implements OnInit {
   }
 
   collaboratorDetail(index: number) {    
-    console.log(index)
     console.log(this.collaborators.filteredData[index])
+    
+    // this.collaborators.filteredData[index].registered.date = moment(`${}`)
     this.router.navigate(['colaborador', this.collaborators.filteredData[index].login.username], {state: {
       data:this.collaborators.filteredData[index]
     }})
