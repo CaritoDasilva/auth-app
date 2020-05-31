@@ -1,3 +1,10 @@
+
+  
+::ng-deep.mat-form-field-underline {
+background-color: #572364 !important;
+} 
+
+
 .container{
     .title{
         padding: 2%;
@@ -14,7 +21,7 @@
         flex-direction: column;
         .filter-container{
             width: 70%;
-            label{
+            mat-label{
                 color: #572364;
             }
         }
