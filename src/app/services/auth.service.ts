@@ -33,7 +33,6 @@ export class AuthService {
 
   createAccountWithEmailAndPassword(email: string, password: string, displayName: string) {
     this.afAuth.createUserWithEmailAndPassword(email, password).then( result => {
-      console.log(result)
       if(result) {
         this.updateAccountInfo(displayName);
         this.userService.getUser(result.user.uid).subscribe(data=>{
@@ -46,7 +45,6 @@ export class AuthService {
   }
 
   updateAccountInfo(displayName: string) {
-    console.log(displayName)
     this.afAuth.onAuthStateChanged( (user) => {
       user.updateProfile({
         displayName: displayName
@@ -58,7 +56,6 @@ export class AuthService {
 
   signInWithMailAndPassword(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password).then( result => {
-      console.log(result)
       if(result) {
         this.setIsLogged(true);
         localStorage.setItem('user', JSON.stringify({user: {
@@ -76,7 +73,6 @@ export class AuthService {
 
   authLogin(provider) {
     this.afAuth.signInWithPopup(provider).then(result => {
-      console.log(result)
       this.userService.getUser(result.user.uid).subscribe(data=>{
         data.length === 0 ? this.userService.createUser(result.user.displayName, result.user.email, 
          result.user.phoneNumber, result.user.photoURL, result.user.providerId, 

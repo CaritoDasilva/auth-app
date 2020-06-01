@@ -1,8 +1,14 @@
 <div class="container">
-    <mat-card class="picture-card">
+    <div class="back-arrow-container" routerLink="/home" routerLinkActive="active">
+        <button mat-icon-button color="primary" aria-label="Example icon button with a delete icon">
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        <h6>Volver a lista</h6>
+    </div>
+    <mat-card class="picture-card col-sm-12 col-12">
         <img src={{collaborator.picture.large}} alt="">
     </mat-card>
-    <mat-card class="info-profile-card">
+    <mat-card class="info-profile-card col-sm-12 col-12">
         <div>
             <h2>{{collaborator.name.first}} {{collaborator.name.last}}</h2>
 
@@ -13,7 +19,6 @@
             <h5>Contacto: {{collaborator.phone}}</h5>
             <h5>Correo electrónico: {{collaborator.email}}</h5>
             <h5>Dirección: {{collaborator.location.street.name}} {{collaborator.location.street.number}}</h5>
-            <h5></h5>
         </div>
     </mat-card>
 

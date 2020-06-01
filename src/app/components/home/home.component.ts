@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
   
   getCollaborators() {
     this.usersService.getRandomUsers().subscribe((data: any) => {
-      console.log(data)
       this.collaborators = new MatTableDataSource<any>(data.results);
       this.collaborators.filteredData.map( colab => moment(`${colab.registered.date}`).format('DD-MM-YYYY'))
       this.collaborators.paginator = this.paginator;
@@ -39,9 +38,6 @@ export class HomeComponent implements OnInit {
   }
 
   collaboratorDetail(index: number) {    
-    console.log(this.collaborators.filteredData[index])
-    
-    // this.collaborators.filteredData[index].registered.date = moment(`${}`)
     this.router.navigate(['colaborador', this.collaborators.filteredData[index].login.username], {state: {
       data:this.collaborators.filteredData[index]
     }})

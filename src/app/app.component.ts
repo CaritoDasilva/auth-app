@@ -25,7 +25,6 @@ export class AppComponent {
 
   getUser() {
     this.userService.getCurrentUser().subscribe(data => {
-      console.log(data);
       (data === null) ? this.router.navigate(['login']) : this.user = data;
     })
   }

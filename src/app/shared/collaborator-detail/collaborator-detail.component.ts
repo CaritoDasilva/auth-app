@@ -12,7 +12,6 @@ export class CollaboratorDetailComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.collaborator);
   }
 
 }

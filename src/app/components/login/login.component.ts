@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
   }
 
   registerWithMail() {
-    console.log(this.loginForm.value)
     this.authService.createAccountWithEmailAndPassword(this.loginForm.value.email,this.loginForm.value.password, this.loginForm.value.name);
     this.loginForm.setValue({
       name: '',
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
 
   signInWithMail() {
     this.authService.signInWithMailAndPassword(this.loginForm.value.email,this.loginForm.value.password).then(response => {
-      console.log(response);
     }).catch( error => console.log(error));
   }
 
