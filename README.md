@@ -1,27 +1,77 @@
-# AuthApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+# Two Brains Test 
+## AuthApp
 
-## Development server
+La aplicación está pensada para visualizar colaboradores en una tabla y al hacer click sobre alguno de ellos, poder ver información más detallada del colaborador. Adicionalmente se agrega un login, para que quienes ingresen lo realicen a través de Gmail o registrándose con un correo electrónico y password. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  
+# Tecnologías utilizadas en el proyecto:  
 
-## Code scaffolding
+- Typescript.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 9.
+
+- Angular Material como framework de diseño.
+
+- Firebase para el deploy y para el servicio de autenticación.
+
+  
+
+# Instalación del proyecto
+
+  
+
+- npm i (para correr todas las dependencias instaladas)
+
+  
+
+## Servidor de desarrollo
+
+  
+
+Run `ng serve` para levantar el serve de desarrollo. Proyecto puede visualizarse localmente en el puerto `http://localhost:4200/`.
+
+  
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+  
 
-## Running unit tests
+Run `ng build` para realizar el build del proyecto.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  
+  
 
-## Running end-to-end tests
+## URL en producción
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+  
 
-## Further help
+**[https://auth-app-2482c.firebaseapp.com/login](https://auth-app-2482c.firebaseapp.com/login)**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  
+
+## Repositorio en Github
+
+  
+
+**[https://github.com/CaritoDasilva/auth-app](https://github.com/CaritoDasilva/auth-app)**
+  
+  
+
+## Servidor de desarrollo
+
+  
+
+Run `ng serve` para levantar el serve de desarrollo. Proyecto puede visualizarse localmente en el puerto `http://localhost:4200/`.
+
+  
+
+## Build
+
+  
+
+Run `ng build` para realizar el build del proyecto.
+
+  
+  
+

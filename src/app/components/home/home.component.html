@@ -1,39 +1,39 @@
-<div class="container">
+<div class="container-fluid">
     <div class="title">
         <h3>Colaboradores</h3>
     </div>
-    <div class="table-container">
+    <div class="table-container col-sm-12 col-12 col-md-8 offset-md-2">
         <div class="filter-container">
             <mat-form-field>
                 <mat-label>Buscar...</mat-label>
                 <input matInput (keyup)="applyFilter($event)">
             </mat-form-field>
         </div>
-        <table mat-table [dataSource]="collaborators">
+        <mat-table [dataSource]="collaborators">
             <ng-container matColumnDef="picture">
-                <th mat-header-cell *matHeaderCellDef>Foto</th>
-                <td mat-cell class="pic-td" *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">
+                <mat-header-cell *matHeaderCellDef class="picture-col">Foto</mat-header-cell>
+                <mat-cell class="pic-td picture-col" *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">
                     <img src={{element.picture.thumbnail}} alt="">
-                </td>
+                </mat-cell>
             </ng-container>
             
             <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef>Nombre</th>
-                <td mat-cell *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">{{element.name.first}} {{element.name.last}} </td>
+                <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+                <mat-cell class="name-col" *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">{{element.name.first}} {{element.name.last}} </mat-cell>
             </ng-container>
             
             <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef>Correo electrónico:</th>
-                <td mat-cell *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">{{element.email}} </td>
+                <mat-header-cell *matHeaderCellDef>Correo electrónico:</mat-header-cell>
+                <mat-cell *matCellDef="let element; index as i" class="email-col" (click)="collaboratorDetail(i)">{{element.email}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="username">
-                <th mat-header-cell *matHeaderCellDef>Username</th>
-                <td mat-cell *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">{{element.login.username}} </td>
-            </ng-container>            
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+            <!-- <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+                <mat-cell *matCellDef="let element; index as i" (click)="collaboratorDetail(i)">{{element.login.username}} </mat-cell>
+            </ng-container>             -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
         <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
     </div>
 </div>

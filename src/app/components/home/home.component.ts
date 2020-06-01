@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[];
   constructor( private usersService: UsersService, private router: Router, private authService: AuthService) { 
     this.collaborators;
-    this.displayedColumns = ['picture', 'name', 'email', 'username'];
+    this.displayedColumns = ['picture', 'name', 'email'];
   }
 
   ngOnInit(): void {

@@ -20,8 +20,13 @@
             align-items: center;
             cursor: pointer;
             background-color: #93c7d6;
+            .login-text{
+                text-align: center;
+                font-size: 12px;
+            }
             &.login{
                 height: auto; 
+                padding: 3%;
                 form{
                     width: 80%;
                     display: flex;
@@ -30,15 +35,17 @@
                         background: transparent;
                         mat-label{
                             font-family: "Domine", serif;
-                            font-size: 20px;
+                            font-size: 16px;
                             color: #572364;
 
                         }               
 
                     }
-                    mat-button{
-                        background: #c2185b;
+                    .login-register-btn{
+                        background: #572364;
                         color: #ffffff;
+                        margin: 5% auto;
+                        width: 70%;
                     }
                 }
             }

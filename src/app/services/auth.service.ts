@@ -5,6 +5,7 @@ import 'firebase/auth';
 import { UsersService } from './users.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,16 +31,47 @@ export class AuthService {
     return this.authLogin(new auth.GoogleAuthProvider());
   }
 
-  createAccountWithEmailAndPassword(email: string, password: string) {
+  createAccountWithEmailAndPassword(email: string, password: string, displayName: string) {
     this.afAuth.createUserWithEmailAndPassword(email, password).then( result => {
       console.log(result)
+      if(result) {
+        this.updateAccountInfo(displayName);
+        this.userService.getUser(result.user.uid).subscribe(data=>{
+          data.length === 0 ? this.userService.createUser(result.user.displayName, result.user.email, 
+           result.user.phoneNumber, result.user.photoURL, result.user.providerId, 
+           result.user.uid) : data.forEach(user => user.payload.doc.data())
+        });
+      }
+    })
+  }
+
+  updateAccountInfo(displayName: string) {
+    console.log(displayName)
+    this.afAuth.onAuthStateChanged( (user) => {
+      user.updateProfile({
+        displayName: displayName
+      }).then( () => {
+        let displayName = user.displayName
+      }), (error) => console.log(error)
     })
   }
 
   signInWithMailAndPassword(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password).then( result => {
       console.log(result)
-    })
+      if(result) {
+        this.setIsLogged(true);
+        localStorage.setItem('user', JSON.stringify({user: {
+          name: result.user.displayName,
+          email: result.user.email,
+          phone: result.user.phoneNumber,
+          picture: result.user.photoURL
+        }}))
+        let user = JSON.parse(localStorage.getItem('user')).user;
+        this.userService.setCurrentUser(user);
+        this.router.navigate(['home'])
+      }
+    }).catch(error => console.log(error));
   }
 
   authLogin(provider) {

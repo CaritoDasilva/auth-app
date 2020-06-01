@@ -5,7 +5,7 @@ background-color: #572364 !important;
 } 
 
 
-.container{
+.container-fluid{
     .title{
         padding: 2%;
         h3{
@@ -20,29 +20,55 @@ background-color: #572364 !important;
         align-items: center;
         flex-direction: column;
         .filter-container{
-            width: 70%;
+            align-self: flex-start;
             mat-label{
                 color: #572364;
             }
         }
-        table{
-            width: 70%;
+        mat-table{
+            width: 100%;
+            max-width: 100%;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-            th{
+            mat-header-row{
                 background: #572364;
             }
-            td{
+            mat-cell{
                 cursor: pointer;
             }
+            .picture-col{
+                max-width: 16vw;
+                
+            }
+            .email-col{
+                @media (min-width: 481px) and (max-width: 767px) {
+                    font-size: 12px;
+                }
+                  
+                @media (min-width: 320px) and (max-width: 480px) {
+                    font-size: 9px;
+                }
+            }
+            .name-col{
+                @media (min-width: 481px) and (max-width: 767px) {
+                    font-size: 16px;
+                }
+                  
+                @media (min-width: 320px) and (max-width: 480px) {
+                    font-size: 12px;
+                } 
+            }
             .pic-td{
-                 padding: 2% 3%;
+                height: 56px;
                 img{
                     border-radius: 50%;
+                    @media (min-width: 320px) and (max-width: 480px) {
+                        width: 25px;
+                    }
                 }
             }            
         }
         mat-paginator{
-            width: 70%;
+            width: 100%;
         }
     }
 }

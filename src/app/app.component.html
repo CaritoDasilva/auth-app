@@ -1,7 +1,14 @@
-<div class="menu-container" *ngIf="isLogin">
+<div class="menu-container container-fluid" *ngIf="isLogin">
   <ng-container *ngIf="user">      
       <h4>¡Hola {{user.name}}!</h4>
-      <img src={{user.picture}} alt="" [matMenuTriggerFor]="menu">
+      <ng-container *ngIf="user.picture">
+        <img src={{user.picture}} alt="" [matMenuTriggerFor]="menu">
+      </ng-container>
+      <ng-container *ngIf="!user.picture">
+        <img src="../assets/images/default-profile.png" alt="" [matMenuTriggerFor]="menu">
+      </ng-container>
+      
+      
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)=signOut()>Cerrar sesión</button>
       </mat-menu>
